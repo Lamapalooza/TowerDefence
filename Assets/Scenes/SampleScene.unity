@@ -394,10 +394,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9055478c7d24754c810f5afb6f2255c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Mass: 1e+12
+  m_Mass: 1e+14
   m_GravityConst: 6e-11
   m_Position: {x: 10, y: 10, z: 10}
-  m_Speed: {x: -1, y: -1, z: -1}
+  m_Speed: {x: -5, y: -9.88, z: -10.18}
   m_MassCentre: {x: 0, y: 0, z: 0}
 --- !u!96 &1265808534
 TrailRenderer:
