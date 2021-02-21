@@ -76,13 +76,13 @@ namespace Fields
             Gizmos.color = Color.blue;
             for (int i = 0; i < m_GridHeight + 1; i++)
             {
-                Gizmos.DrawLine(m_Offset + new Vector3(0f, 0f, m_NodeSize * i),
-                    m_Offset + new Vector3(m_GridWidth * m_NodeSize, 0f, 0f) + new Vector3(0f, 0f, m_NodeSize * i));
+                Gizmos.DrawLine(m_Offset + Vector3.forward * i * m_NodeSize,
+                    m_Offset + (Vector3.right * m_GridWidth + Vector3.forward * i) * m_NodeSize);
             }
             for (int i = 0; i < m_GridWidth + 1; i++)
             {
-                Gizmos.DrawLine(m_Offset + new Vector3(m_NodeSize * i, 0f, 0f),
-                    m_Offset + new Vector3(0f, 0f, m_GridHeight * m_NodeSize) + new Vector3(m_NodeSize * i, 0f, 0f));
+                Gizmos.DrawLine(m_Offset + Vector3.right * m_NodeSize * i,
+                    m_Offset + (Vector3.forward * m_GridHeight + Vector3.right * i) * m_NodeSize);
             }
         }
     }

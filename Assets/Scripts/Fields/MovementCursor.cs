@@ -56,11 +56,13 @@ namespace Fields
                 int x = (int) (difference.x / m_NodeSize);
                 int z = (int) (difference.z / m_NodeSize);
 
-                m_Cursor.transform.position = m_Offset + new Vector3((x + 0.5f)*m_NodeSize,0f,(z + 0.5f)*m_NodeSize);
+                Vector3 centreOfNode = m_Offset + (new Vector3((x + 0.5f), 0f, (z + 0.5f)) * m_NodeSize);
+                
+                m_Cursor.transform.position = centreOfNode;
                 
                 if (Input.GetMouseButtonDown(1))
                 {
-                    m_MovementAgent.SetTarget(m_Offset + new Vector3((x + 0.5f)*m_NodeSize,0f,(z + 0.5f)*m_NodeSize));
+                    m_MovementAgent.SetTarget(centreOfNode);
                 }
             }
             else
