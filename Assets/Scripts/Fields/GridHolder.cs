@@ -18,12 +18,9 @@ namespace Fields
         private Camera m_Camera;
 
         private Vector3 m_Offset;
-        
-        private void Awake()
+
+        private void OnValidate()
         {
-            m_Grid = new Grid(m_GridWidth, m_GridHeight);
-            m_Camera = Camera.main;
-            
             // Default plane size is 10 by 10
             float width = m_GridWidth * m_NodeSize;
             float height = m_GridHeight * m_NodeSize;
@@ -35,6 +32,12 @@ namespace Fields
 
             m_Offset = transform.position - 
                        (new Vector3(width, 0f, height)) * 0.5f;
+        }
+
+        private void Awake()
+        {
+            m_Grid = new Grid(m_GridWidth, m_GridHeight);
+            m_Camera = Camera.main;
         }
 
         private void Update()
@@ -69,6 +72,18 @@ namespace Fields
         {
             Gizmos.color = Color.red;
             Gizmos.DrawSphere(m_Offset, 0.1f);
+            
+            Gizmos.color = Color.blue;
+            for (int i = 0; i < m_GridHeight + 1; i++)
+            {
+                Gizmos.DrawLine(m_Offset + new Vector3(0f, 0f, m_NodeSize * i),
+                    m_Offset + new Vector3(m_GridWidth * m_NodeSize, 0f, 0f) + new Vector3(0f, 0f, m_NodeSize * i));
+            }
+            for (int i = 0; i < m_GridWidth + 1; i++)
+            {
+                Gizmos.DrawLine(m_Offset + new Vector3(m_NodeSize * i, 0f, 0f),
+                    m_Offset + new Vector3(0f, 0f, m_GridHeight * m_NodeSize) + new Vector3(m_NodeSize * i, 0f, 0f));
+            }
         }
     }
 }
