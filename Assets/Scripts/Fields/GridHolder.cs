@@ -45,6 +45,19 @@ namespace Fields
         private void Start()
         {
             m_Camera = Camera.main;
+            
+            // Default plane size is 10 by 10
+            float width = m_GridWidth * m_NodeSize;
+            float height = m_GridHeight * m_NodeSize;
+            
+            transform.localScale = new Vector3(
+                width * 0.1f, 
+                1f, 
+                height * 0.1f);
+
+            m_Offset = transform.position - 
+                       (new Vector3(width, 0f, height)) * 0.5f;
+            
             m_Grid = new Grid(m_GridWidth, m_GridHeight, m_Offset, m_NodeSize, m_TargetCoordinate);
         }
 

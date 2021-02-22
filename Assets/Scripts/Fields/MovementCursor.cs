@@ -17,7 +17,7 @@ namespace Fields
 
         private Vector3 m_Offset;
         
-        private void Awake()
+        private void Start()
         {
             m_Camera = Camera.main;
             
@@ -35,7 +35,7 @@ namespace Fields
             {
                 return;
             }
-
+            
             Vector3 mousePosition = Input.mousePosition;
 
             Ray ray = m_Camera.ScreenPointToRay(mousePosition);
