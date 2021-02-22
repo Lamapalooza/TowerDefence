@@ -16,7 +16,7 @@ public class MovementAgent : MonoBehaviour
         m_Target = new Vector3(10f, 0f, 10f);
     }
 
-    void Update()
+    private void Update()
     {
         float distance = (m_Target - transform.position).magnitude;
         if (distance < TOLERANCE)

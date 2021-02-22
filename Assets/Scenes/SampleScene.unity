@@ -137,6 +137,7 @@ GameObject:
   - component: {fileID: 340434262}
   - component: {fileID: 340434261}
   - component: {fileID: 340434266}
+  - component: {fileID: 340434267}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -158,6 +159,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_GridWidth: 20
   m_GridHeight: 20
+  m_TargetCoordinate: {x: 0, y: 0}
+  m_StartCoordinate: {x: 19, y: 19}
   m_NodeSize: 1
 --- !u!64 &340434262
 MeshCollider:
@@ -253,6 +256,20 @@ MonoBehaviour:
   m_GridWidth: 20
   m_GridHeight: 20
   m_NodeSize: 1
+--- !u!114 &340434267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 340434260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d44a479f66049fb8cecf068cae39870, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MovementAgent: {fileID: 2594267499747469889, guid: cce7a805f53acbf47b45a0862cd1d3f7, type: 3}
+  m_GridHolder: {fileID: 340434261}
 --- !u!1 &523770725
 GameObject:
   m_ObjectHideFlags: 0
@@ -266,7 +283,7 @@ GameObject:
   - component: {fileID: 523770728}
   - component: {fileID: 523770726}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -284,7 +301,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6c061c56fe49124caa44c12b88f94ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Speed: 20
+  m_Speed: 5
   m_Target: {x: 20, y: 0, z: 20}
 --- !u!23 &523770728
 MeshRenderer:
@@ -537,7 +554,7 @@ GameObject:
   - component: {fileID: 1242698653}
   - component: {fileID: 1242698652}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Cursor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

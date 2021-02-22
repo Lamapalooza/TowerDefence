@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Fields
 {
@@ -10,6 +11,9 @@ namespace Fields
         [SerializeField]
         private int m_GridHeight;
 
+        [SerializeField] private Vector2Int m_TargetCoordinate;
+        [SerializeField] private Vector2Int m_StartCoordinate;
+
         [SerializeField] private float m_NodeSize;
             
 
@@ -18,6 +22,10 @@ namespace Fields
         private Camera m_Camera;
 
         private Vector3 m_Offset;
+
+        public Vector2Int StartCoordinate => m_StartCoordinate;
+
+        public Grid Grid => m_Grid;
 
         private void OnValidate()
         {
@@ -34,10 +42,10 @@ namespace Fields
                        (new Vector3(width, 0f, height)) * 0.5f;
         }
 
-        private void Awake()
+        private void Start()
         {
-            m_Grid = new Grid(m_GridWidth, m_GridHeight);
             m_Camera = Camera.main;
+            m_Grid = new Grid(m_GridWidth, m_GridHeight, m_Offset, m_NodeSize, m_TargetCoordinate);
         }
 
         private void Update()
@@ -63,15 +71,49 @@ namespace Fields
 
                 int x = (int) (difference.x / m_NodeSize);
                 int z = (int) (difference.z / m_NodeSize);
-                
-                Debug.Log(x + " " + z);
+
+                if (Input.GetMouseButtonDown(0))
+                {
+                    Node node = m_Grid.GetNode(x, z);
+                    node.IsOccupied = !node.IsOccupied;
+                    m_Grid.UpdatePathfinding();
+                }
             }
         }
 
         private void OnDrawGizmos()
         {
+            if (m_Grid == null)
+            {
+                return;
+            }
+            
             Gizmos.color = Color.red;
-            Gizmos.DrawSphere(m_Offset, 0.1f);
+            
+            foreach (Node node in m_Grid.EnumerateAllNodes())
+            {
+                if (node.NextNode == null)
+                {
+                    continue;
+                }
+
+                if (node.IsOccupied)
+                {
+                    Gizmos.color = Color.black;
+                    Gizmos.DrawSphere(node.Position, 0.5f);
+                    continue;
+                }
+                Vector3 start = node.Position;
+                Vector3 end = node.NextNode.Position;
+
+                Vector3 dir = end - start;
+
+                start -= dir * 0.25f;
+                end -= dir * 0.75f;
+                
+                Gizmos.DrawLine(start, end);
+                Gizmos.DrawSphere(end, 0.1f);
+            }
             
             Gizmos.color = Color.blue;
             for (int i = 0; i < m_GridHeight + 1; i++)
