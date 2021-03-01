@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Fields;
 using UnityEngine;
 
-namespace Unit
+namespace Enemy
 {
     public class GridMovementAgent : MonoBehaviour
     {

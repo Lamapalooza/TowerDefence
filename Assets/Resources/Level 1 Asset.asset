@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0130b627a85948a185baaae3401ba682, type: 3}
+  m_Name: Level 1 Asset
+  m_EditorClassIdentifier: 
+  SceneAsset: {fileID: 102900000, guid: 37e59364a89b0234297db40fb03d1312, type: 3}
+  SpawnWavesAsset: {fileID: 11400000, guid: 5fd7056304150a7409e107e6c1d8157f, type: 2}
