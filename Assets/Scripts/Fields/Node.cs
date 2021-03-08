@@ -11,6 +11,8 @@ namespace Fields
 
         public float PathWeight;
 
+        public OccupationAvailability m_OccupationAvailability;
+
         public Node(Vector3 position)
         {
             Position = position;

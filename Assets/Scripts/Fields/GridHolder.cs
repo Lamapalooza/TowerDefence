@@ -16,6 +16,8 @@ namespace Fields
 
         [SerializeField] private float m_NodeSize;
 
+        private FlowFieldPathfinding m_Pathfinding;
+
         private Grid m_Grid;
 
         private Camera m_Camera;
@@ -88,9 +90,7 @@ namespace Fields
 
                 if (Input.GetMouseButtonDown(0))
                 {
-                    Node node = m_Grid.GetNode(position);
-                    node.IsOccupied = !node.IsOccupied;
-                    m_Grid.UpdatePathfinding();
+                    Grid.TryOccupyNode(position, Grid.Pathfinding.CanOccupy(position));
                 }
             }
         }

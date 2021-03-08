@@ -16,6 +16,8 @@ namespace Fields
 
         public int Height => m_Height;
 
+        public FlowFieldPathfinding Pathfinding => m_Pathfinding;
+
         public Grid(int width, int height, Vector3 offset, float nodeSize, Vector2Int target, Vector2Int start)
         {
             m_Width = width;

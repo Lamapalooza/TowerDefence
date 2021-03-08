@@ -32,11 +32,12 @@ namespace Fields
 
         public void UpdateField()
         {
+
             foreach (Node node in m_Grid.EnumerateAllNodes())
             {
                 node.ResetWeight();
             }
-            
+
             Queue<Vector2Int> queue = new Queue<Vector2Int>();
             
             queue.Enqueue(m_Target);
@@ -58,6 +59,15 @@ namespace Fields
                     }
                 }
             }
+            
+
+            foreach (Node node in m_Grid.EnumerateAllNodes())
+            {
+                node.m_OccupationAvailability = OccupationAvailability.Undefined;
+            }
+            
+            m_Grid.GetNode(m_Start).m_OccupationAvailability = OccupationAvailability.CanNotOccupy;
+            m_Grid.GetNode(m_Target).m_OccupationAvailability = OccupationAvailability.CanNotOccupy;
         }
 
         private IEnumerable<Connection> GetNeighbours(Vector2Int coordinate)
@@ -131,13 +141,38 @@ namespace Fields
 
         public bool CanOccupy(Vector2Int coordinate)
         {
-            Node node = m_Grid.GetNode(coordinate);
-            node.IsOccupied = !node.IsOccupied;
-            m_Grid.UpdatePathfinding();
-            bool isPathExists = true;
-            node.IsOccupied = !node.IsOccupied;
-            m_Grid.UpdatePathfinding();
-            return isPathExists;
+            Node thisNode = m_Grid.GetNode(coordinate);
+            Node currentNode = m_Grid.GetNode(m_Start);
+            
+            if (thisNode.m_OccupationAvailability == OccupationAvailability.CanOccupy)
+            {
+                return true;
+            }
+            
+            if (thisNode.m_OccupationAvailability == OccupationAvailability.CanNotOccupy)
+            {
+                return false;
+            }
+            
+            if (thisNode.m_OccupationAvailability == OccupationAvailability.Undefined)
+            {
+                thisNode.IsOccupied = !thisNode.IsOccupied;
+                m_Grid.UpdatePathfinding();
+                while (currentNode != m_Grid.GetNode(m_Target))
+                {
+                    if (currentNode.IsOccupied)
+                    {
+                        thisNode.m_OccupationAvailability = OccupationAvailability.CanNotOccupy;
+                        thisNode.IsOccupied = !thisNode.IsOccupied;
+                        return false;
+                    }
+                    currentNode = currentNode.NextNode;
+                }
+                thisNode.IsOccupied = !thisNode.IsOccupied;
+            }
+
+            thisNode.m_OccupationAvailability = OccupationAvailability.CanOccupy;
+            return true;
         }
     }
 }
