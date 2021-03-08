@@ -38,6 +38,15 @@ namespace Fields
             m_Pathfinding.UpdateField();
         }
 
+        public Node GetNode(Vector3 position)
+        {
+            float nodeSize = m_Nodes[1, 0].Position.x - m_Nodes[0, 0].Position.x; 
+            Vector3 offset = m_Nodes[0, 0].Position - new Vector3(.5f, 0f, .5f) * nodeSize;
+            int i = (int) ((position - offset).x / nodeSize - .5f);
+            int j = (int) ((position - offset).z / nodeSize - .5f);
+            return GetNode(i, j);
+        }
+        
         public Node GetNode(Vector2Int coordinate)
         {
             return GetNode(coordinate.x, coordinate.y);
@@ -80,6 +89,10 @@ namespace Fields
             {
                 Node node = GetNode(coordinate);
                 node.IsOccupied = !node.IsOccupied;
+                if (!node.IsOccupied)
+                {
+                    UpdatePathfinding();
+                }
             }
         }
     }

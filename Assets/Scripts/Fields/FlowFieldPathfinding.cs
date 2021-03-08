@@ -60,12 +60,35 @@ namespace Fields
                 }
             }
             
+            Node countNode = m_Grid.GetNode(m_Start);
 
             foreach (Node node in m_Grid.EnumerateAllNodes())
             {
-                node.m_OccupationAvailability = OccupationAvailability.Undefined;
+                node.m_OccupationAvailability = OccupationAvailability.CanOccupy;
             }
-            
+
+            while (countNode != m_Grid.GetNode(m_Target))
+            {
+                countNode.m_OccupationAvailability = OccupationAvailability.Undefined;
+                countNode = countNode.NextNode;
+                if ((countNode.Position+new Vector3(0,0,1)).z < m_Grid.GetNode(0,  m_Grid.Height - 1).Position.z)
+                {
+                    m_Grid.GetNode(countNode.Position+new Vector3(0,0,1)).m_OccupationAvailability = OccupationAvailability.Undefined;
+                }
+                if ((countNode.Position+new Vector3(-1,0,0)).x >= 0 )
+                {
+                    m_Grid.GetNode(countNode.Position+new Vector3(-1,0,0)).m_OccupationAvailability = OccupationAvailability.Undefined ;
+                }
+                if ((countNode.Position+new Vector3(0,0,-1)).z >= 0 )
+                {
+                    m_Grid.GetNode(countNode.Position+new Vector3(0,0,-1)).m_OccupationAvailability = OccupationAvailability.Undefined ;
+                }
+                if ((countNode.Position+new Vector3(1,0,0)).x < m_Grid.GetNode(m_Grid.Width - 1,  0).Position.x )
+                {
+                    m_Grid.GetNode(countNode.Position+new Vector3(1,0,0)).m_OccupationAvailability = OccupationAvailability.Undefined;
+                }
+            }
+
             m_Grid.GetNode(m_Start).m_OccupationAvailability = OccupationAvailability.CanNotOccupy;
             m_Grid.GetNode(m_Target).m_OccupationAvailability = OccupationAvailability.CanNotOccupy;
         }
@@ -143,7 +166,7 @@ namespace Fields
         {
             Node thisNode = m_Grid.GetNode(coordinate);
             Node currentNode = m_Grid.GetNode(m_Start);
-            
+
             if (thisNode.m_OccupationAvailability == OccupationAvailability.CanOccupy)
             {
                 return true;
