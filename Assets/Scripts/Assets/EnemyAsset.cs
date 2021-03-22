@@ -8,6 +8,8 @@ namespace Assets
 
     {
         public int StartHealth;
+
+        public bool IsFlyingEnemy;
         
         public EnemyView ViewPrefab;
     }

@@ -6,17 +6,17 @@ using Grid = Fields.Grid;
 
 namespace Enemy
 {
-    public class GridMovementAgent : IMovementAgent
+    public class FlyingMovementAgent : IMovementAgent
     {
         private float m_Speed;
         private Transform m_Transform;
 
-        public GridMovementAgent(float speed, Transform transform, Grid grid)
+        public FlyingMovementAgent(float speed, Transform transform, Grid grid)
         {
             m_Speed = speed;
             m_Transform = transform;
             
-            SetTargetNode(grid.GetStartNode());
+            SetTargetNode(grid.GetTargetNode());
         }
 
         private const float TOLERANCE = 0.1f;

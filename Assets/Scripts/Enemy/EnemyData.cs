@@ -8,9 +8,11 @@ namespace Enemy
 
         public EnemyView View => m_View;
 
+        public readonly EnemyAsset Asset;
+
         public EnemyData(EnemyAsset asset)
         {
-            
+            Asset = asset;
         }
         
         public void AttachView(EnemyView view)
