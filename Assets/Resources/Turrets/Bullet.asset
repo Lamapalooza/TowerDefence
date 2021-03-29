@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 507cfb29869f4ac4875a466e9e7140cf, type: 3}
-  m_Name: Enemy Asset
+  m_Script: {fileID: 11500000, guid: 08e60538cca24b7ab420e6ff73f319eb, type: 3}
+  m_Name: Bullet
   m_EditorClassIdentifier: 
-  StartHealth: 40
-  IsFlyingEnemy: 0
-  ViewPrefab: {fileID: 2613590905413088679, guid: cce7a805f53acbf47b45a0862cd1d3f7, type: 3}
+  m_BulletPrefab: {fileID: 1289740248350712679, guid: c508e3888526c624e8f98655dd24fd4e, type: 3}
