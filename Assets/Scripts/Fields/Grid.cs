@@ -98,15 +98,32 @@ namespace Fields
 
        public List<Node> GetNodesInCircle(Vector3 point, float radius)
        {
-           Vector3 difference = point - m_Offset;
-
-           int x = (int) (difference.x / m_NodeSize);
-           int z = (int) (difference.z / m_NodeSize);
+           float sqrRadius = radius * radius; 
 
            List<Node> nodes = new List<Node>();
-           
-           nodes.Add(GetNode(x,z));
-           
+           foreach (Node node in EnumerateAllNodes())
+           {
+               if (node.Position.x < point.x - radius - m_NodeSize * .5f 
+                   || node.Position.x > point.x + radius + m_NodeSize * .5f
+                   || node.Position.z < point.z - radius - m_NodeSize * .5f
+                   || node.Position.z > point.z + radius + m_NodeSize * .5f)
+               {
+                   continue;
+               }
+               
+               if ((point - new Vector3(node.Position.x + m_NodeSize * .5f,0f,node.Position.z)).sqrMagnitude < sqrRadius 
+                   || (point - new Vector3(node.Position.x - m_NodeSize * .5f,0f,node.Position.z)).sqrMagnitude < sqrRadius
+                   || (point - new Vector3(node.Position.x,0f,node.Position.z + m_NodeSize * .5f)).sqrMagnitude < sqrRadius
+                   || (point - new Vector3(node.Position.x,0f,node.Position.z - m_NodeSize * .5f)).sqrMagnitude < sqrRadius
+                   || (point - new Vector3(node.Position.x + m_NodeSize * .5f,0f,node.Position.z + m_NodeSize * .5f)).sqrMagnitude < sqrRadius
+                   || (point - new Vector3(node.Position.x + m_NodeSize * .5f,0f,node.Position.z - m_NodeSize * .5f)).sqrMagnitude < sqrRadius
+                   || (point - new Vector3(node.Position.x - m_NodeSize * .5f,0f,node.Position.z + m_NodeSize * .5f)).sqrMagnitude < sqrRadius
+                   || (point - new Vector3(node.Position.x - m_NodeSize * .5f,0f,node.Position.z - m_NodeSize * .5f)).sqrMagnitude < sqrRadius)
+               {
+                   nodes.Add(node);
+               }
+           }
+
            return nodes;
        }
 

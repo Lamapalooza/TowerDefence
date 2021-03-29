@@ -22,7 +22,7 @@ namespace Turret.Weapon.Projectile
 
         private float m_LastShotTime = 0f;
 
-        private List<Node> m_Nodes;
+        private List<Node> m_Nodes = new List<Node>();
 
         public TurretProjectileWeapon(TurretProjectileWeaponAsset asset, TurretView view)
         {

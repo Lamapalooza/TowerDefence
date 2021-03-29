@@ -15,7 +15,7 @@ namespace Fields
 
         public OccupationAvailability m_OccupationAvailability;
 
-        public List<EnemyData> EnemyDatas;
+        public List<EnemyData> EnemyDatas = new List<EnemyData>();
 
         public Node(Vector3 position)
         {
