@@ -9,9 +9,11 @@ namespace Fields
 
         private int m_Width;
         private int m_Height;
+        private float m_NodeSize;
 
         private Vector2Int m_StartCoordinate;
         private Vector2Int m_TargetCoordinate;
+        private Vector3 m_Offset;
 
         private Node m_SelectedNode = null;
 
@@ -29,6 +31,10 @@ namespace Fields
 
             m_StartCoordinate = start;
             m_TargetCoordinate = target;
+
+            m_Offset = offset;
+            m_NodeSize = nodeSize;
+            
 
             m_Nodes = new Node[m_Width, m_Height];
 
@@ -75,19 +81,34 @@ namespace Fields
             return m_SelectedNode;
         }
 
-        public Node GetNode(Vector3 position)
-        {
-            float nodeSize = m_Nodes[1, 0].Position.x - m_Nodes[0, 0].Position.x; 
-            Vector3 offset = m_Nodes[0, 0].Position - new Vector3(.5f, 0f, .5f) * nodeSize;
-            int i = (int) ((position - offset).x / nodeSize - .5f);
-            int j = (int) ((position - offset).z / nodeSize - .5f);
-            return GetNode(i, j);
-        }
-        
         public Node GetNode(Vector2Int coordinate)
         {
             return GetNode(coordinate.x, coordinate.y);
         }
+        
+        public Node GetNodeAtPoint(Vector3 point)
+        {
+            Vector3 difference = point - m_Offset;
+
+            int x = (int) (difference.x / m_NodeSize);
+            int z = (int) (difference.z / m_NodeSize);
+            
+            return GetNode(x, z);
+        }
+
+       public List<Node> GetNodesInCircle(Vector3 point, float radius)
+       {
+           Vector3 difference = point - m_Offset;
+
+           int x = (int) (difference.x / m_NodeSize);
+           int z = (int) (difference.z / m_NodeSize);
+
+           List<Node> nodes = new List<Node>();
+           
+           nodes.Add(GetNode(x,z));
+           
+           return nodes;
+       }
 
         public Node GetNode(int i, int j)
         {

@@ -73,19 +73,19 @@ namespace Fields
                 countNode = countNode.NextNode;
                 if ((countNode.Position+new Vector3(0,0,1)).z < m_Grid.GetNode(0,  m_Grid.Height - 1).Position.z)
                 {
-                    m_Grid.GetNode(countNode.Position+new Vector3(0,0,1)).m_OccupationAvailability = OccupationAvailability.Undefined;
+                    m_Grid.GetNodeAtPoint(countNode.Position+new Vector3(0,0,1)).m_OccupationAvailability = OccupationAvailability.Undefined;
                 }
                 if ((countNode.Position+new Vector3(-1,0,0)).x >= 0 )
                 {
-                    m_Grid.GetNode(countNode.Position+new Vector3(-1,0,0)).m_OccupationAvailability = OccupationAvailability.Undefined ;
+                    m_Grid.GetNodeAtPoint(countNode.Position+new Vector3(-1,0,0)).m_OccupationAvailability = OccupationAvailability.Undefined ;
                 }
                 if ((countNode.Position+new Vector3(0,0,-1)).z >= 0 )
                 {
-                    m_Grid.GetNode(countNode.Position+new Vector3(0,0,-1)).m_OccupationAvailability = OccupationAvailability.Undefined ;
+                    m_Grid.GetNodeAtPoint(countNode.Position+new Vector3(0,0,-1)).m_OccupationAvailability = OccupationAvailability.Undefined ;
                 }
                 if ((countNode.Position+new Vector3(1,0,0)).x < m_Grid.GetNode(m_Grid.Width - 1,  0).Position.x )
                 {
-                    m_Grid.GetNode(countNode.Position+new Vector3(1,0,0)).m_OccupationAvailability = OccupationAvailability.Undefined;
+                    m_Grid.GetNodeAtPoint(countNode.Position+new Vector3(1,0,0)).m_OccupationAvailability = OccupationAvailability.Undefined;
                 }
             }
 

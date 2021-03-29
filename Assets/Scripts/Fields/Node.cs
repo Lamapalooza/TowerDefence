@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using Enemy;
 using UnityEngine;
 
 namespace Fields
@@ -12,6 +14,8 @@ namespace Fields
         public float PathWeight;
 
         public OccupationAvailability m_OccupationAvailability;
+
+        public List<EnemyData> EnemyDatas;
 
         public Node(Vector3 position)
         {

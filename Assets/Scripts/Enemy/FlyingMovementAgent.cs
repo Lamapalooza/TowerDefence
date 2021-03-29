@@ -10,16 +10,18 @@ namespace Enemy
     {
         private float m_Speed;
         private Transform m_Transform;
+        private EnemyData m_Data;
 
-        public FlyingMovementAgent(float speed, Transform transform, Grid grid)
+        public FlyingMovementAgent(float speed, Transform transform, Grid grid, EnemyData data)
         {
             m_Speed = speed;
             m_Transform = transform;
+            m_Data = data;
             
             SetTargetNode(grid.GetTargetNode());
         }
 
-        private const float TOLERANCE = 0.1f;
+        private const float TOLERANCE = 0.01f;
 
         private Node m_TargetNode;
 
@@ -33,8 +35,8 @@ namespace Enemy
             Vector3 target = m_TargetNode.Position;
             Vector3 position = m_Transform.position;
             
-            float distance = new Vector3(target.x-position.x,0f,target.z-position.z).magnitude;
-            if (distance < TOLERANCE)
+            float sqrsDistance = new Vector3(target.x-position.x,0f,target.z-position.z).sqrMagnitude;
+            if (sqrsDistance < TOLERANCE)
             {
                 m_TargetNode = m_TargetNode.NextNode;
                 return;
