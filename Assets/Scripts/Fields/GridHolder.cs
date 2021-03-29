@@ -94,7 +94,6 @@ namespace Fields
                 m_Grid.UnselectNode();
             }
         }
-
         private void OnDrawGizmos()
         {
             if (m_Grid == null)
@@ -117,6 +116,7 @@ namespace Fields
                     Gizmos.DrawSphere(node.Position, 0.5f);
                     continue;
                 }
+                Gizmos.color = Color.red;
                 Vector3 start = node.Position;
                 Vector3 end = node.NextNode.Position;
 

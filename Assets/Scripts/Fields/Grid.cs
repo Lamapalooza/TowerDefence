@@ -20,8 +20,7 @@ namespace Fields
         public int Width => m_Width;
 
         public int Height => m_Height;
-
-        public FlowFieldPathfinding Pathfinding => m_Pathfinding;
+        
 
         public Grid(int width, int height, Vector3 offset, float nodeSize, Vector2Int start, Vector2Int target)
         {
@@ -43,7 +42,7 @@ namespace Fields
             
             m_Pathfinding = new FlowFieldPathfinding(this, target, start);
             
-            m_Pathfinding.UpdateField();
+            UpdatePathfinding();
         }
 
         public Node GetStartNode()
@@ -121,17 +120,48 @@ namespace Fields
             m_Pathfinding.UpdateField();
         }
 
-        public void TryOccupyNode(Vector2Int coordinate, bool occupy)
+        public void TryOccupyNode(Node node, bool occupy)
         {
             if (occupy)
             {
-                Node node = GetNode(coordinate);
-                node.IsOccupied = !node.IsOccupied;
-                if (!node.IsOccupied)
-                {
-                    UpdatePathfinding();
-                }
+                node.IsOccupied = true;
             }
+            UpdatePathfinding();
+        }
+        
+        public bool CanOccupy(Node node)
+        {
+            Node currentNode = GetNode(m_StartCoordinate);
+
+            if (node.m_OccupationAvailability == OccupationAvailability.CanOccupy)
+            {
+                return true;
+            }
+            
+            if (node.m_OccupationAvailability == OccupationAvailability.CanNotOccupy)
+            {
+                return false;
+            }
+            
+            if (node.m_OccupationAvailability == OccupationAvailability.Undefined)
+            {
+                node.IsOccupied = !node.IsOccupied;
+                UpdatePathfinding();
+                while (currentNode != GetNode(m_TargetCoordinate))
+                {
+                    if (currentNode.IsOccupied)
+                    {
+                        node.m_OccupationAvailability = OccupationAvailability.CanNotOccupy;
+                        node.IsOccupied = !node.IsOccupied;
+                        return false;
+                    }
+                    currentNode = currentNode.NextNode;
+                }
+                node.IsOccupied = !node.IsOccupied;
+            }
+
+            node.m_OccupationAvailability = OccupationAvailability.CanOccupy;
+            return true;
         }
     }
 }

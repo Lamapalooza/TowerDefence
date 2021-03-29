@@ -1,11 +1,12 @@
 using System;
+using Enemy;
 using UnityEngine;
 
 namespace Fields
 {
     public class MovementCursor : MonoBehaviour
     {
-        [SerializeField] private MovementAgent m_MovementAgent;
+        private IMovementAgent m_MovementAgent;
         [SerializeField] private GameObject m_Cursor;
         
         [SerializeField] private int m_GridWidth;
@@ -62,7 +63,7 @@ namespace Fields
                 
                 if (Input.GetMouseButtonDown(1))
                 {
-                    m_MovementAgent.SetTarget(centreOfNode);
+                    
                 }
             }
             else

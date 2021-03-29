@@ -161,41 +161,5 @@ namespace Fields
                 yield return new Connection(rightUpCoordinate, Mathf.Sqrt(2f));
             }
         }
-
-        public bool CanOccupy(Vector2Int coordinate)
-        {
-            Node thisNode = m_Grid.GetNode(coordinate);
-            Node currentNode = m_Grid.GetNode(m_Start);
-
-            if (thisNode.m_OccupationAvailability == OccupationAvailability.CanOccupy)
-            {
-                return true;
-            }
-            
-            if (thisNode.m_OccupationAvailability == OccupationAvailability.CanNotOccupy)
-            {
-                return false;
-            }
-            
-            if (thisNode.m_OccupationAvailability == OccupationAvailability.Undefined)
-            {
-                thisNode.IsOccupied = !thisNode.IsOccupied;
-                m_Grid.UpdatePathfinding();
-                while (currentNode != m_Grid.GetNode(m_Target))
-                {
-                    if (currentNode.IsOccupied)
-                    {
-                        thisNode.m_OccupationAvailability = OccupationAvailability.CanNotOccupy;
-                        thisNode.IsOccupied = !thisNode.IsOccupied;
-                        return false;
-                    }
-                    currentNode = currentNode.NextNode;
-                }
-                thisNode.IsOccupied = !thisNode.IsOccupied;
-            }
-
-            thisNode.m_OccupationAvailability = OccupationAvailability.CanOccupy;
-            return true;
-        }
     }
 }
