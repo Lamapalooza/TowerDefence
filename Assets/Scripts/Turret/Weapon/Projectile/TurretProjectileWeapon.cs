@@ -72,7 +72,7 @@ namespace Turret.Weapon.Projectile
 
         private void TickProjectiles()
         {
-            for (var i = 0; i < m_Projectiles.Count; i++)
+            for (int i = 0; i < m_Projectiles.Count; i++)
             {
                 IProjectile projectile = m_Projectiles[i];
                 projectile.TickApproaching();
