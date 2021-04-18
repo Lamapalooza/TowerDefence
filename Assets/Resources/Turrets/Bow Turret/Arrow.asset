@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d65a11d5bf3f418f80339cc968a1e050, type: 3}
-  m_Name: Market
+  m_Script: {fileID: 11500000, guid: 08e60538cca24b7ab420e6ff73f319eb, type: 3}
+  m_Name: Arrow
   m_EditorClassIdentifier: 
-  TurretAssets:
-  - {fileID: 11400000, guid: dbc3ca240796e2845b5b7e61bb872573, type: 2}
+  m_BulletPrefab: {fileID: 4993866390196844028, guid: c2892a977659a944990456fc2fea07d3, type: 3}
+  Speed: 40
+  Damage: 5

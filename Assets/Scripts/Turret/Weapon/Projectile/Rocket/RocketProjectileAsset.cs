@@ -7,9 +7,18 @@ namespace Turret.Weapon.Projectile.Rocket
     public class RocketProjectileAsset : ProjectileAssetBase
     {
         [SerializeField] private RocketProjectile m_RocketPrefab;
+        
+        [SerializeField] public float Speed;
+
+        [SerializeField] public float Damage;
+
+        [SerializeField] public float ExplosionRadius;
+
         public override IProjectile CreateProjectile(Vector3 origin, Vector3 originForward, EnemyData enemyData)
         {
-            return Instantiate(m_RocketPrefab, origin, Quaternion.LookRotation(enemyData.View.transform.position, Vector3.up));
+            RocketProjectile projectile = Instantiate(m_RocketPrefab, origin, Quaternion.LookRotation(enemyData.View.transform.position - origin, Vector3.up));
+            projectile.SetRocketAsset(this);
+            return projectile;
         }
     }
 }

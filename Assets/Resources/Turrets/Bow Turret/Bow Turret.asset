@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d65a11d5bf3f418f80339cc968a1e050, type: 3}
-  m_Name: Market
+  m_Script: {fileID: 11500000, guid: 98dc944e9deb4359b33c3fe16c08e4ba, type: 3}
+  m_Name: Bow Turret
   m_EditorClassIdentifier: 
-  TurretAssets:
-  - {fileID: 11400000, guid: dbc3ca240796e2845b5b7e61bb872573, type: 2}
+  ViewPrefab: {fileID: 1834677775993027778, guid: 8cd3f2012866276469cdfbcf6548e4f1, type: 3}
+  WeaponAsset: {fileID: 11400000, guid: 5f12a131a7a57e54ab36c41456362c25, type: 2}

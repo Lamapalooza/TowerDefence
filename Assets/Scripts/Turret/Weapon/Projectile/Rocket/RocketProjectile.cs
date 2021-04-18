@@ -8,15 +8,22 @@ namespace Turret.Weapon.Projectile.Rocket
 {
     public class RocketProjectile : MonoBehaviour, IProjectile
     {
-        private float m_Speed = 5f;
-        private int m_Damage = 15;
-        private float m_ExplosionRadius = 4f;
+        private float m_Speed;
+        private float m_Damage;
+        private float m_ExplosionRadius;
         private bool m_DidHit = false;
         private EnemyData m_HitEnemy = null;
         
+        public void SetRocketAsset(RocketProjectileAsset rocketProjectileAsset)
+        {
+            m_Speed = rocketProjectileAsset.Speed;
+            m_Damage = rocketProjectileAsset.Damage;
+            m_ExplosionRadius = rocketProjectileAsset.ExplosionRadius;
+        }
+
         public void TickApproaching()
         {
-            transform.Translate(transform.forward * (m_Speed * Time.deltaTime), Space.World);
+            transform.Translate(transform.forward  * (m_Speed * Time.deltaTime), Space.World);
         }
 
         private void OnTriggerEnter(Collider other)

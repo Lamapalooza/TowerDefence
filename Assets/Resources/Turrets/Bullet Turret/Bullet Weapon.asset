@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d65a11d5bf3f418f80339cc968a1e050, type: 3}
-  m_Name: Market
+  m_Script: {fileID: 11500000, guid: 8355dc93ba7d40b9a1e1d758d43f68fe, type: 3}
+  m_Name: Bullet Weapon
   m_EditorClassIdentifier: 
-  TurretAssets:
-  - {fileID: 11400000, guid: dbc3ca240796e2845b5b7e61bb872573, type: 2}
+  RateOfFire: 10
+  MaxDistance: 10
+  ProjectileAsset: {fileID: 11400000, guid: 5408e6ca0d6180a41ae9b29ecdd0d6d3, type: 2}

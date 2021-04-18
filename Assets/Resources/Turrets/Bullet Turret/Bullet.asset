@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8355dc93ba7d40b9a1e1d758d43f68fe, type: 3}
-  m_Name: Bullet Weapon
+  m_Script: {fileID: 11500000, guid: 08e60538cca24b7ab420e6ff73f319eb, type: 3}
+  m_Name: Bullet
   m_EditorClassIdentifier: 
-  RateOfFire: 5
-  MaxDistance: 10
-  ProjectileAsset: {fileID: 11400000, guid: 5408e6ca0d6180a41ae9b29ecdd0d6d3, type: 2}
+  m_BulletPrefab: {fileID: 1289740248350712679, guid: c508e3888526c624e8f98655dd24fd4e, type: 3}
+  Speed: 40
+  Damage: 5

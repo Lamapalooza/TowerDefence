@@ -7,6 +7,7 @@ namespace Enemy
 
     {
         public float StartHealth;
+        public float Speed;
 
         public bool IsFlyingEnemy;
         

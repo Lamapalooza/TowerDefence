@@ -15,6 +15,9 @@ namespace Turret.Weapon.Projectile
         [CanBeNull]
         private EnemyData m_ClosestEnemyData;
 
+        [CanBeNull]
+        public EnemyData ClosestEnemyData => m_ClosestEnemyData;
+
         private List<IProjectile> m_Projectiles = new List<IProjectile>();
         
         private float m_TimeBetweenShots;
@@ -89,6 +92,7 @@ namespace Turret.Weapon.Projectile
         private void Shoot(EnemyData enemyData)
         {
             m_Projectiles.Add(m_Asset.ProjectileAsset.CreateProjectile(m_View.ProjectileOrigin.position, m_View.ProjectileOrigin.forward, enemyData));
+            m_View.AnimateShot();
         }
     }
 }
