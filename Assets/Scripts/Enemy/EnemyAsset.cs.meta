@@ -1,3 +1,12 @@
-﻿fileFormatVersion: 2
+fileFormatVersion: 2
 guid: 507cfb29869f4ac4875a466e9e7140cf
-timeCreated: 1614614471
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - ViewPrefab: {fileID: 7931421337721823303, guid: fb80d574ec67a7c4e8ef1a14a65990f6, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using Enemy;
 using Fields;
 using JetBrains.Annotations;
-using NUnit.Framework;
 using UnityEngine;
 
 namespace Turret.Weapon

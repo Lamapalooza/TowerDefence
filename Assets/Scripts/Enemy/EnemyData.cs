@@ -39,7 +39,7 @@ namespace Enemy
 
         private void Die()
         {
-            Debug.Log("Die");
+            m_View.Die();
         }
     }
 }
