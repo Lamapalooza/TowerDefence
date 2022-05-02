@@ -35,6 +35,7 @@ namespace Enemy
         public void Die()
         {
             m_Animator.SetTrigger(DieAnimationIndex);
+            Destroy(gameObject, 3f);
         }
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using Assets;
+using RunTime;
 using UnityEngine;
 
 namespace Enemy
@@ -14,7 +15,7 @@ namespace Enemy
 
         public EnemyAsset Asset => m_Asset;
 
-        
+        public bool IsDead => m_Health <= 0;
 
         public EnemyData(EnemyAsset asset)
         {
@@ -30,16 +31,17 @@ namespace Enemy
 
         public void GetDamage(float damage)
         {
-            m_Health -= damage;
-            if (m_Health < 0)
+            if (IsDead)
             {
-                Die();
+                return;
             }
+            m_Health -= damage;
         }
 
-        private void Die()
+        public void Die()
         {
-            m_View.Die();
+            View.Die();
+            m_View.MovementAgent.Die();
         }
     }
 }
