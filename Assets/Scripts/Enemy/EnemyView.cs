@@ -10,9 +10,6 @@ namespace Enemy
 
         public EnemyData Data => m_Data;
 
-        [SerializeField] private Animator m_Animator;
-        private static readonly int DieAnimationIndex = Animator.StringToHash("Die");
-
         public IMovementAgent MovementAgent => m_MovementAgent;
 
         public void AttachData(EnemyData data)
@@ -26,7 +23,7 @@ namespace Enemy
             {
                 m_MovementAgent = new FlyingMovementAgent(m_Data.Asset.Speed, transform, grid, m_Data);
             }
-            if (!m_Data.Asset.IsFlyingEnemy)
+            else
             {
                 m_MovementAgent = new GridMovementAgent(m_Data.Asset.Speed, transform, grid, m_Data);
             }
@@ -34,7 +31,12 @@ namespace Enemy
 
         public void Die()
         {
-            m_Animator.SetTrigger(DieAnimationIndex);
+            Destroy(gameObject, 3f);
+        }
+
+        public void ReachedTarget()
+        {
+            Destroy(gameObject, 3f);
         }
     }
 }

@@ -6,34 +6,39 @@ using UnityEngine;
 
 namespace Turret.Weapon
 {
-    public static class EnemySearch
+    public class EnemySearch
     {
+        private IReadOnlyList<EnemyData> m_EnemyDatas;
+
+        public EnemySearch(IReadOnlyList<EnemyData> enemyDatas)
+        {
+            m_EnemyDatas = enemyDatas;
+        }
+        
         [CanBeNull]
-        public static EnemyData GetClosestEnemy(Vector3 center, float maxDistance, List<Node> nodes)
+        public  EnemyData GetClosestEnemy(Vector3 center, float maxDistance)
         {
             float maxSqrDistance = maxDistance * maxDistance;
 
             float minSqrDistance = float.MaxValue;
             EnemyData closestEnemy = null;
             
-            foreach (Node node in nodes)
-            {
-                foreach (EnemyData enemyData in node.EnemyDatas)
-                {
-                    float sqrDistance = (enemyData.View.transform.position - center).sqrMagnitude;
-                    if (sqrDistance > maxSqrDistance)
-                    {
-                        continue;
-                    }
 
-                    if (sqrDistance < minSqrDistance)
-                    {
-                        minSqrDistance = sqrDistance;
-                        closestEnemy = enemyData;
-                    }
+            foreach (EnemyData enemyData in m_EnemyDatas)
+            {
+                float sqrDistance = (enemyData.View.transform.position - center).sqrMagnitude;
+                if (sqrDistance > maxSqrDistance)
+                {
+                    continue;
+                }
+
+                if (sqrDistance < minSqrDistance)
+                {
+                    minSqrDistance = sqrDistance;
+                    closestEnemy = enemyData;
                 }
             }
-            
+
             return closestEnemy;
         }
     }

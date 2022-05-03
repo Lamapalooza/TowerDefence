@@ -12,5 +12,8 @@ namespace Enemy
         public bool IsFlyingEnemy;
         
         public EnemyView ViewPrefab;
+
+        public int Damage;
+        public int Reward;
     }
 }

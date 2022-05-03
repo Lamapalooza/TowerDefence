@@ -60,6 +60,11 @@ namespace Enemy
             m_Transform.Translate(delta);
         }
 
+        public Node GetCurrentNode()
+        {
+            return m_Grid.GetNodeAtPoint(m_Transform.position);
+        }
+        
         private void SetTargetNode(Node node)
         {
             m_TargetNode = node;

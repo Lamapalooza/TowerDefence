@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using Enemy;
-using Fields;
 using JetBrains.Annotations;
 using RunTime;
 using UnityEngine;
@@ -15,9 +14,6 @@ namespace Turret.Weapon.Projectile
         [CanBeNull]
         private EnemyData m_ClosestEnemyData;
 
-        [CanBeNull]
-        public EnemyData ClosestEnemyData => m_ClosestEnemyData;
-
         private List<IProjectile> m_Projectiles = new List<IProjectile>();
         
         private float m_TimeBetweenShots;
@@ -25,15 +21,12 @@ namespace Turret.Weapon.Projectile
 
         private float m_LastShotTime = 0f;
 
-        private List<Node> m_Nodes = new List<Node>();
-
         public TurretProjectileWeapon(TurretProjectileWeaponAsset asset, TurretView view)
         {
             m_Asset = asset;
             m_View = view;
             m_TimeBetweenShots = 1f / m_Asset.RateOfFire;
             m_MaxDistance = m_Asset.MaxDistance;
-            m_Nodes = Game.Player.Grid.GetNodesInCircle(m_View.transform.position, m_MaxDistance);
         }
         
         public void TickShoot()
@@ -52,7 +45,7 @@ namespace Turret.Weapon.Projectile
             }
 
             m_ClosestEnemyData =
-                EnemySearch.GetClosestEnemy(m_View.transform.position, m_MaxDistance, m_Nodes);
+                Game.Player.EnemySearch.GetClosestEnemy(m_View.transform.position, m_MaxDistance);
 
             if (m_ClosestEnemyData == null)
             {
@@ -67,7 +60,7 @@ namespace Turret.Weapon.Projectile
 
         private void TickTower()
         {
-            if (m_ClosestEnemyData !=null)
+            if ( m_ClosestEnemyData !=null && !m_ClosestEnemyData.IsDead)
             {
                 m_View.TowerLookAt(m_ClosestEnemyData.View.transform.position);
             }

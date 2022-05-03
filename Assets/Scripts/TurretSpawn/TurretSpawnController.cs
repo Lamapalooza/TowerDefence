@@ -35,8 +35,18 @@ namespace TurretSpawn
                 {
                     return;
                 }
-                
-                SpawnTurret(m_Market.ChosenTurret, selectedNode);
+
+                TurretAsset asset = m_Market.ChosenTurret;
+
+                if (asset != null)
+                {
+                    m_Market.BuyTurret(asset);
+                    SpawnTurret(asset, selectedNode);
+                }
+                else
+                {
+                    Debug.Log("Not enough money!");
+                }
             }
         }
 
