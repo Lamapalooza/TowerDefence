@@ -1,3 +1,4 @@
+using UI.InGame.Overtips;
 using UnityEngine;
 using Grid = Fields.Grid;
 
@@ -5,6 +6,9 @@ namespace Enemy
 {
     public class EnemyView : MonoBehaviour
     {
+        [SerializeField] private EnemyOvertip m_Overtip;
+        
+        
         private EnemyData m_Data;
         private IMovementAgent m_MovementAgent;
 
@@ -15,6 +19,7 @@ namespace Enemy
         public void AttachData(EnemyData data)
         {
             m_Data = data;
+            m_Overtip.SetData(m_Data);
         }
 
         public void CreateMovementAgent(Grid grid)

@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
 
 namespace Fields
@@ -65,6 +66,11 @@ namespace Fields
         public void RaycastInGrid()
         {
             if (m_Grid == null || m_Camera == null)
+            {
+                return;
+            }
+
+            if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
             {
                 return;
             }

@@ -7,6 +7,9 @@ namespace Turret
 
     public class TurretAsset : ScriptableObject
     {
+        public Sprite Sprite;
+        public string Description;
+        
         public TurretView ViewPrefab;
         public TurretWeaponAssetBase WeaponAsset;
 
